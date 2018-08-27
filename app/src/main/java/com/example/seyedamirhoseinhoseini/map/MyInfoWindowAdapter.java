@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
@@ -17,6 +18,8 @@ import java.util.zip.Inflater;
 public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     Context context;
     ViewGroup parent;
+    TextView title;
+    TextView description;
 
     public MyInfoWindowAdapter(Context c, ViewGroup parent) {
         context = c;
@@ -26,11 +29,22 @@ public class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     @Override
     public View getInfoWindow(Marker marker) {
-        return LayoutInflater.from(context).inflate(R.layout.info_window, parent);
+    /*    View v = LayoutInflater.from(context).inflate(R.layout.info_window, parent);
+        title = v.findViewById(R.id.info_window_title);
+        description = v.findViewById(R.id.info_window_description);
+        title.setText(marker.getTitle());
+        description.setText(marker.getSnippet());*/
+        return null;
+
     }
 
     @Override
     public View getInfoContents(Marker marker) {
-        return null;
+       View v = LayoutInflater.from(context).inflate(R.layout.info_window, parent);
+        title = v.findViewById(R.id.info_window_title);
+        description = v.findViewById(R.id.info_window_description);
+        title.setText(marker.getTitle());
+        description.setText(marker.getSnippet());
+        return v;
     }
 }

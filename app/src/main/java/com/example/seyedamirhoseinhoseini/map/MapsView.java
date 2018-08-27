@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -21,12 +22,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 
-public class MapsView extends FragmentActivity implements OnMapReadyCallback {
+public class MapsView extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
     boolean LocationPermission = false;
@@ -54,6 +56,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter(this, parent));
+        mMap.setOnInfoWindowClickListener(this);
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         //  getLocation();
@@ -66,7 +69,7 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
 
     public void addMarker(double lat, double lng, String title) {
         LatLng marker = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions().snippet("My city").title(title).position(marker)).setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker));
+        mMap.addMarker(new MarkerOptions().snippet("My city  blaaa blaaaa  blaaa blaaaa  blaaa blaaaa  blaaa blaaaa  blaaa blaaaa  blaaa blaaaa ").title(title).position(marker)).setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker, 10.5f));
     }
 
@@ -100,4 +103,8 @@ public class MapsView extends FragmentActivity implements OnMapReadyCallback {
     }
 
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this,"Clicked",Toast.LENGTH_SHORT).show();
+    }
 }

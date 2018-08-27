@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:id="@+id/parent"
-   android:background="@android:color/white"
-   >
+    >
 
     <ImageView
         android:id="@+id/icon"
